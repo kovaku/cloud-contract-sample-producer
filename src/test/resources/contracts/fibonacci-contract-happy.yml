@@ -1,0 +1,34 @@
+description: Fibonacci controller contract - valid case
+name: fibo
+priority: 1
+ignored: false
+request:
+  url: /fibonacci
+  queryParameters:
+    nth: 10
+  method: GET
+  headers:
+    Content-Type: application/json
+    client-id: fibo-consumer
+  matchers:
+    headers:
+      - key: client-id
+        regex: "[a-z]+-consumer"
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body:
+    nth: 10
+    fibonacci: 55
+  matchers:
+    body:
+      - path: $.nth
+        type: by_regex
+        value: "[0-9]+"
+      - path: $.fibonacci
+        type: by_regex
+        value: "[0-9]+"
+    headers:
+      - key: Content-Type
+        regex: "application/json"

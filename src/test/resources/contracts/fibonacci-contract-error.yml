@@ -1,0 +1,14 @@
+description: Fibonacci controller contract - Error case - invalid client id header
+name: fibo_error
+priority: 1
+ignored: false
+request:
+  url: /fibonacci
+  queryParameters:
+    nth: 101
+  method: GET
+  headers:
+    Content-Type: application/json
+    client-id: fibo-consumer
+response:
+  status: 400
